@@ -1,0 +1,158 @@
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+nz-header {
+  background: #fff;
+  padding: 0;
+  margin-bottom: 10px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+
+nz-content {
+  // margin: 0 16px;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+.inner-content {
+  padding: 24px;
+  height: 100%;
+  width: 100%;
+  border-radius: 16px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.inner-content::-webkit-scrollbar-thumb {
+  background-color: white !important;
+  border: 1px solid #cacacc !important;
+  border-radius: 20px !important;
+}
+
+.inner-content::-webkit-scrollbar {
+  width: 12px !important;
+  background-color: #f3f3f3 !important;
+  border-radius: 20px !important;
+}
+
+nz-footer {
+  text-align: center;
+}
+
+body {
+  background-color: #111111;
+  margin: 0;
+  overflow-x: hidden;
+  height: 100vh;
+  width: 100vh;
+}
+
+.bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200vh;
+  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+  background-repeat: repeat;
+  animation: bg-animation .2s infinite;
+  opacity: .9;
+  visibility: visible;
+}
+
+@keyframes bg-animation {
+  0% {
+    transform: translate(0, 0)
+  }
+
+  10% {
+    transform: translate(-5%, -5%)
+  }
+
+  20% {
+    transform: translate(-10%, 5%)
+  }
+
+  30% {
+    transform: translate(5%, -10%)
+  }
+
+  40% {
+    transform: translate(-5%, 15%)
+  }
+
+  50% {
+    transform: translate(-10%, 5%)
+  }
+
+  60% {
+    transform: translate(15%, 0)
+  }
+
+  70% {
+    transform: translate(0, 10%)
+  }
+
+  80% {
+    transform: translate(-15%, 0)
+  }
+
+  90% {
+    transform: translate(10%, 5%)
+  }
+
+  100% {
+    transform: translate(5%, 0)
+  }
+}
+
+nz-layout {
+  height: 100%;
+  width: 100%;
+}
+
+li {
+  height: 80px !important;
+}
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #0e3256;
+  border-radius: 0px 30px 30px 0px;
+}
+
+.ant-menu-item {
+  border-radius: 0px 30px 30px 0px;
+}
+
+.ant-menu.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub,
+.ant-menu.ant-menu-dark .ant-menu-sub {
+  background-color: #f2f0f1;
+}
+
+.ant-menu-item {
+  color: #252324;
+}
+
+.anticon {
+  font-size: 30px;
+}
+
+::ng-deep .ant-layout-sider-children {
+  padding-right: 20px !important;
+  background-color: #f2f0f1;
+}
+
+::ng-deep .ant-menu-inline.ant-menu-root .ant-menu-item>.ant-menu-title-content,
+.ant-menu-inline.ant-menu-root .ant-menu-submenu-title>.ant-menu-title-content {
+  display: flex;
+  align-items: center;
+}

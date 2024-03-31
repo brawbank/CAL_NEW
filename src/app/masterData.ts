@@ -1,0 +1,7 @@
+export const color = [{ value: 1, label: "1" }, { value: 4, label: "4" }]
+export const size = [{ value: 1, label: "A1" }, { value: 2, label: "A2" }, { value: 3, label: "A3" }, { value: 4, label: "A4" }]
+export const paperType = [{ value: 1, label: "กระดาษปอนด์" }, { value: 2, label: "กระดาษปรู๊ฟ" }, { value: 3, label: "กระดาษอาร์ต" }, { value: 4, label: "กระดาษภนอมสายตา" }]
+export const cover = [{ value: 1, label: "1" }, { value: 2, label: "2" }, { value: 3, label: "3" }, { value: 4, label: "4" }]
+export const coverType = [{ value: 1, label: "เคลือบด้าน" }, { value: 2, label: "เคลือบเงา" }, { value: 3, label: "เคลือบฟิลม์" } , { value: 4, label: "เคลือบ UV" }, { value: 5, label: "เคลือบ Spoot UV" }]
+export const bookType = [{ value: 1, label: "ใส่สันทากาว" }, { value: 2, label: "เย็บมุงหลังคา" }]
+export const pump = [{ value: 1, label: "ปั้มทอง / ปั้มมเงิน" }, { value: 2, label: "ดุนนูน" }, { value: 3, label: "ปั้มปรุ / ปั้นดุนนูน" }]

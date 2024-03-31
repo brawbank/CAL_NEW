@@ -1,0 +1,70 @@
+<!-- <div class="login-card"> -->
+    <div nz-row class="login-container">
+        <div nz-col nzSpan="24" class="login-side">
+          <nz-card class="login-card">
+            <div nz-row>
+              <div nz-col nzSpan="24" style="text-align: center;">
+                <span style="color: #fff; font-size: 3.5rem; font-weight: bold;">LOGIN</span><br>
+                <span style="color: #fff; font-size: 1rem;">Pleas enter your</span><br>
+                <span style="color: #fff; font-size: 1rem;">username and password</span>
+              </div>
+              <nz-divider></nz-divider>
+      
+      
+              <div nz-col nzSpan="24" style="margin-top: 20PX;">
+                <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+                  <nz-form-item>
+                    <nz-form-control nzErrorTip="Please input your username!">
+                      <nz-input-group nzPrefixIcon="user">
+                        <input style="height: 40px; font-size: 0.9rem;" type="text" nz-input formControlName="userName"
+                          placeholder="Username" />
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-control nzErrorTip="Please input your Password!">
+                      <nz-input-group nzPrefixIcon="lock">
+                        <input style="height: 40px; font-size: 0.9rem;" type="password" nz-input formControlName="password"
+                          placeholder="Password" />
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <button style="height: 50px; font-size: 1rem;" nz-button class="login-form-button login-form-margin"
+                    [nzType]="'primary'">Log in <span nz-icon nzType="login" nzTheme="outline"></span></button>
+                  <a nz-button nzType="link" style="color: #fff; font-size: 1rem;" (click)="showModal()"><span nz-icon
+                      nzType="question-circle" nzTheme="outline"></span> Do you want any help?</a>
+                </form>
+              </div>
+      
+            </div>
+          </nz-card>
+        </div>
+      </div>
+      
+      
+      
+      <nz-modal nzCentered [(nzVisible)]="feedbackModal" nzTitle="Feedback" (nzOnCancel)="handleCancel()"
+        (nzOnOk)="handleOk()" [nzFooter]="null">
+        <ng-container *nzModalContent>
+          <div class="row" [formGroup]="feedbackForm">
+            <div class="nz-col" nzSpan="24">
+              <nz-form-item>
+                <nz-form-label nzSpan="24" nzRequired nzFor="email">E-mail</nz-form-label>
+                <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                  <input style="height: 40px; font-size: 0.9rem;" type="text" nz-input formControlName="email"
+                      placeholder="Email" />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzSpan="24" nzRequired nzFor="email">What's the problem?</nz-form-label>
+                <nz-form-control nzErrorTip="Please input feedback details!">
+                  <textarea  placeholder="Email"  rows="4" nz-input formControlName="message"></textarea> 
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div class="nz-col" nzSpan="24" style="display: flex; justify-content: flex-end;">
+              <button nz-button nzType="primary" (click)="sendFeedback()">Send <span nz-icon nzType="send" nzTheme="outline"></span></button>
+            </div>
+          </div>
+        </ng-container>
+      </nz-modal>

@@ -1,0 +1,68 @@
+/* login.component.scss */
+
+.login-container {
+    height: 100%;
+    background-image: url(../../../assets/bg.jpg);
+    background-size: cover;
+  }
+  
+  .login-side {
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+  }
+  .ant-divider-horizontal {
+    display: flex;
+    clear: both;
+    width: 100%;
+    height: 5px;
+    background-color: white;
+    border-radius: 4px;
+    min-width: 100%;
+    margin: 24px 0;
+  }
+  
+  .ant-modal-body{
+    background: rgb(0,7,26) !important;
+    background: linear-gradient(0deg, rgba(0,7,26,1) 0%, rgba(15,51,85,1) 100%) !important;
+  }
+  
+  nz-form-label{
+    color: #fff !important;
+  }
+  
+  .ant-form-item-label > label{
+    color: #fff !important;
+  }
+  
+  .login-card {
+    background: rgb(0,7,26);
+    background: linear-gradient(0deg, rgba(0,7,26,1) 0%, rgba(15,51,85,1) 100%);
+    width: 600px;
+    height: fit-content;
+    border-radius: 35px;
+    margin: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    color: #fff;
+    justify-content: center;
+    display: flex;
+    padding: 20PX;
+  }
+  
+  
+  .login-form {
+    // max-width: 300px;
+    // margin-top: 150px;
+  }
+  
+  .login-form-margin {
+    margin-bottom: 16px;
+  }
+  
+  .login-form-forgot {
+    float: right;
+  }
+  
+  .login-form-button {
+    width: 100%;
+  }

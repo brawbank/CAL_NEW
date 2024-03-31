@@ -1,0 +1,40 @@
+export const digitalData = [
+    {
+        "jobNo": "2403-0001",
+        "jobName": "งานที่ 1",
+        "jobDate": "2024-03-24T14:59:28.025Z",
+        "printSize": 1,
+        "printNo": "2",
+        "paperType": 3,
+        "paperGram": "16",
+        "coatingType": 4,
+        "bindingType": 1,
+        "customerName": "สมชัย สมบูรณ์",
+        "address": "123 ตำบล : ด่านขุนทด อำเภอ : ด่านขุนทด จังหวัด : นครราชสีมา",
+        "phone": "0877764434",
+        "email": "mwawing@gmail.com",
+        "payment": "100",
+        "discount": "5",
+        "completionDate": "2024-03-28T15:00:12.460Z",
+        "note": "หมายเหตุ"
+    },
+    {
+        "jobNo": "2403-0002",
+        "jobName": "งานที่ 2",
+        "jobDate": "2024-03-24T14:59:28.025Z",
+        "printSize": 1,
+        "printNo": "2",
+        "paperType": 3,
+        "paperGram": "16",
+        "coatingType": 4,
+        "bindingType": 1,
+        "customerName": "จิตรา สมบูรณ์",
+        "address": "356ตำบล : จันทเขลม อำเภอ : เขาคิชฌกูฏ จังหวัด : จันทบุรี",
+        "phone": "0877764434",
+        "email": "ajjabing@gmail.com",
+        "payment": "100",
+        "discount": "5",
+        "completionDate": "2024-03-28T15:00:12.460Z",
+        "note": ""
+    }
+]

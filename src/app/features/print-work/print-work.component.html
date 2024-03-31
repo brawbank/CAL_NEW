@@ -1,0 +1,284 @@
+<div nz-row>
+    <div nz-col nzSpan="24">
+        <div nz-row class="header">
+            <div nz-col nzSpan="10"> <span class="head-title">รายงานการพิมพ์</span></div>
+            <div nz-col nzSpan="14" class="menu">
+                <button nz-button nzType="default" class="menu-bn" (click)="cearJob()"><span nz-icon nzType="plus"
+                        nzTheme="outline"></span><span>
+                        รับงานใหม่</span></button>
+                <button nz-button nzType="default" class="menu-bn" (click)="deleteJob()"><span nz-icon nzType="minus"
+                        nzTheme="outline"></span><span>
+                        ลบงานนี้</span> </button>
+                <button nz-button nzType="default" class="menu-bn" (click)="showModal()"><span nz-icon nzType="search"
+                        nzTheme="outline"></span><span>
+                        ค้นหา</span></button>
+                <button nz-button nzType="default" class="menu-bn"><span nz-icon nzType="printer"
+                        nzTheme="outline"></span><span>
+                        พิมพ์งาน</span> </button>
+                <button nz-button nzType="default" class="menu-bn"><span nz-icon nzType="mail"
+                        nzTheme="outline"></span><span> ส่ง
+                        E-MAIL</span></button>
+            </div>
+        </div>
+    </div>
+    <div nz-col nzSpan="24" class="sub-header">
+        <div nz-row>
+            <div nz-col nzSpan="18">แสดงงานที่ {{getPage().current}} จากทั้งหมด {{getPage().total}} รายการ</div>
+            <div nz-col nzSpan="6" style="justify-content: end; display: flex;">
+                <button nz-button nzType="default" style="margin: 2px;"><span nz-icon nzType="caret-left"
+                        nzTheme="outline" (click)="prevJobb()"></span></button>
+                <button nz-button nzType="default" style="margin: 2px;"><span nz-icon nzType="left"
+                        nzTheme="outline" (click)="prevJob()"></span></button>
+                <button nz-button nzType="default" style="margin: 2px;"><span nz-icon nzType="right"
+                        nzTheme="outline" (click)="nextJob()"></span></button>
+                <button nz-button nzType="default" style="margin: 2px;"><span nz-icon nzType="caret-right"
+                        nzTheme="outline" (click)="nextJobb()"></span></button>
+            </div>
+        </div>
+    </div>
+
+    <div nz-col nzSpan="24" style="padding-left: 20px; padding-right: 20px;">
+        <div nz-row [formGroup]="reportForm">
+            <div nz-col nzSpan="14" style="padding-right: 20px;">
+                <div nz-row style="align-items: center; margin-bottom: 20px;">
+                    <div nz-col nzSpan="16" style="font-size: 30px;">Job# {{RunnigNo()}}</div>
+                    <div nz-col nzSpan="8" style="font-size: 15px;">ประเภท : งานหนังสือ</div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">วันที่</div>
+                    <div nz-col nzSpan="14">
+                        <nz-date-picker formControlName="jobDate"></nz-date-picker>
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">ชื่องาน</div>
+                    <div nz-col nzSpan="14">
+                        <input nz-input formControlName="jobName" />
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">ขนาดเล่ม</div>
+                    <div nz-col nzSpan="4">
+                        <nz-select style="width: 100%;" formControlName="printSize">
+                            <nz-option *ngFor="let item of sizeList" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+
+                        </nz-select>
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">จำนวนเล่ม</div>
+                    <div nz-col nzSpan="4">
+                        <input nz-input formControlName="printAmount"/>
+                    </div>
+                    <div nz-col nzSpan="6" style="margin-left: 5px;">เล่ม</div>
+                </div>
+
+
+                <nz-divider></nz-divider>
+
+
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">ปก</div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">กระดาษปก</div>
+                    <div nz-col nzSpan="4">
+                        <input nz-input formControlName="coverPaperGram"/>
+                    </div>
+                    <div nz-col nzSpan="2" style="margin-left: 5px;">แกรม</div>
+                    <div nz-col nzSpan="2" style="margin-left: 5px;">สีปก</div>
+                    <div nz-col nzSpan="4" style="margin-left: 5px;">
+                        <nz-select style="width: 100%;" formControlName="coverPaperColor">
+                            <nz-option *ngFor="let item of colorList" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+                        </nz-select>                    </div>
+                    <div nz-col nzSpan="2" style="margin-left: 5px;">สี</div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">ประเภทกระดาษ</div>
+                    <div nz-col nzSpan="6">
+                        <nz-select style="width: 100%;" formControlName="coverPaperType">
+                            <nz-option *ngFor="let item of paperTypeList" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+
+                        </nz-select>
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">เคลือบปก</div>
+                    <div nz-col nzSpan="4" style="margin-right: 5px;">เคลือบครั้งที่</div>
+                    <div nz-col nzSpan="2">
+                        <nz-select style="width: 100%;" formControlName="coatingNo">
+                            <nz-option *ngFor="let item of colorList" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+                        </nz-select>
+                    </div>
+                    <div nz-col nzSpan="3" style="margin-right: 5px; margin-left: 5px;">ประเภท</div>
+                    <div nz-col nzSpan="6">
+                        <nz-select style="width: 100%;" formControlName="coatingType">
+                            <nz-option *ngFor="let item of coverTypeList" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+                        </nz-select>
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">ปั๊มปก</div>
+                    <div nz-col nzSpan="2" style="margin-right: 5px;">ปั้ม</div>
+                    <div nz-col nzSpan="6">
+                        <nz-select style="width: 100%;" formControlName="coverPump">
+                            <nz-option *ngFor="let item of pumpList" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+                        </nz-select>
+                    </div>
+
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">การทำเล่ม</div>
+                    <div nz-col nzSpan="2" style="margin-right: 5px;">รูปแบบ</div>
+                    <div nz-col nzSpan="6">
+                        <nz-select style="width: 100%;" formControlName="bindingType">
+                            <nz-option *ngFor="let item of bookTypeList" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+                        </nz-select>
+                    </div>
+                </div>
+
+                <nz-divider></nz-divider>
+
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">เนื้อใน</div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">จำนวนหน้า</div>
+                    <div nz-col nzSpan="4">
+                        <input nz-input formControlName="pageAmount"/>
+                    </div>
+                    <div nz-col nzSpan="2" style="margin-left: 5px;">แกรม</div>
+                    <div nz-col nzSpan="2" style="margin-left: 5px;">สีปก</div>
+                    <div nz-col nzSpan="4" style="margin-left: 5px;">
+                        <nz-select style="width: 100%;" formControlName="pageColor">
+                            <nz-option *ngFor="let item of colorList" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+                        </nz-select>
+                    </div>
+                    <div nz-col nzSpan="2" style="margin-left: 5px;">สี</div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">กระดาษเนื้อใน</div>
+                    <div nz-col nzSpan="4">
+                        <input nz-input formControlName="pagePaper"/>
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">ประเภทกระดาษ</div>
+                    <div nz-col nzSpan="6">
+                        <nz-select style="width: 100%;" formControlName="pagePaperType">
+                            <nz-option *ngFor="let item of paperTypeList" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+                        </nz-select>
+                    </div>
+                </div>
+
+            </div>
+            <div nz-col nzSpan="10" class="customer">
+                <div nz-row style="align-items: center; margin-bottom: 20px;">
+                    <div nz-col nzSpan="24" style="font-size: 30px;">ลูกค้า</div>
+                </div>
+
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">ชื่อลูกค้า</div>
+                    <div nz-col nzSpan="18">
+                        <input nz-input formControlName="customerName" />
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">ที่อยู่</div>
+                    <div nz-col nzSpan="18">
+                        <textarea rows="6" nz-input formControlName="address"></textarea>
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">โทรศัพท์</div>
+                    <div nz-col nzSpan="18">
+                        <input nz-input formControlName="phone" />
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">E-mail</div>
+                    <div nz-col nzSpan="18">
+                        <input nz-input formControlName="email" />
+                    </div>
+                </div>
+
+                <nz-divider></nz-divider>
+
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">การชำระเงิน</div>
+                    <div nz-col nzSpan="7">
+                        <input nz-input formControlName="payment" />
+                    </div>
+                    <div nz-col nzSpan="5" style="text-align: center;">
+                        ส่วนลด
+                    </div>
+                    <div nz-col nzSpan="4">
+                        <input nz-input formControlName="discount" />
+                    </div>
+                    <div nz-col nzSpan="2" style="text-align: center;">%</div>
+                </div>
+
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">กำหนดแล้วเสร็จ</div>
+                    <div nz-col nzSpan="18">
+                        <nz-date-picker formControlName="completionDate"></nz-date-picker>
+                    </div>
+                </div>
+                <div nz-row class="item">
+                    <div nz-col nzSpan="6">หมายเหตุ</div>
+                    <div nz-col nzSpan="18">
+                        <textarea rows="2" nz-input formControlName="note"></textarea>
+                    </div>
+                </div>
+
+                <div nz-row class="item" style="display: flex; justify-content: flex-end;">
+                    <button nz-button nzType="primary" style="background-color: #0e3256; border-radius: 10px;"
+                        (click)="calculatePrice()">คำนวนราคา</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]="null">
+    <ng-container *nzModalContent>
+        <div nz-row>
+            <div nz-col nzSpan="24" style="margin-top: 20px; margin-bottom: 10px;">
+                <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                    <input type="text" nz-input placeholder="ค้นหา" />
+                </nz-input-group>
+                <ng-template #suffixIconButton>
+                    <button nz-button nzType="primary" nzSearch style="background-color: #0e3256"><span nz-icon
+                            nzType="search"></span></button>
+                </ng-template>
+            </div>
+        </div>
+        <nz-table #basicTable [nzData]="ListOfData">
+            <thead>
+                <tr>
+                    <th>Job</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.jobNo }}</td>
+                    <td>{{ data.jobName }}</td>
+                    <td>{{ data.jobDate | date:'dd/MM/yyyy' }}</td>
+                    <td>
+                        <a (click)="select(data)">เลือก</a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </ng-container>
+</nz-modal>
