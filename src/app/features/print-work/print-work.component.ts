@@ -4,6 +4,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { ModalButtonOptions } from 'ng-zorro-antd/modal';
 import { bookType, color, cover, coverType, paperType, pump, size } from 'src/app/masterData';
 import { printData } from 'src/app/mock/printData';
+import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 
 @Component({
   selector: 'app-print-work',
@@ -30,7 +31,7 @@ export class PrintWorkComponent {
   createaForm(): void {
     this.reportForm = this.fb.group({
       jobNo: [this.running(), Validators.required],
-      jobName: [''],
+      jobName: ['',Validators.required],
       jobDate: [this.dateNow],
       printSize: [''],
       printAmount: [''],
@@ -116,32 +117,45 @@ export class PrintWorkComponent {
     this.isVisible = false;
   }
 
- getRandomNumber(min: number, max: number): number {
+  getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   calculatePrice(): void {
-    console.log(this.reportForm.value);
-    this.reportForm.get('payment')?.setValue(this.running());
-    if (this.isNewJob()) {
-      let current = this.ListOfData.find(obj => obj.jobNo == this.reportForm.get('jobNo')?.value);
-      current = this.reportForm.value
-      this.message.create('success', `อัพเดด ${this.reportForm.get('jobNo')?.value} เรียบร้อย`);
-    } else {
-      this.ListOfData.push(this.reportForm.value);
-      this.message.create('success', `เพิ่ม ${this.reportForm.get('jobNo')?.value} เรียบร้อย`);
+    if (this.reportForm.valid) {
+      console.log(this.reportForm.value);
+      this.reportForm.get('payment')?.setValue(this.running());
+      if (this.isNewJob()) {
+        let current = this.ListOfData.find(obj => obj.jobNo == this.reportForm.get('jobNo')?.value);
+        current = this.reportForm.value
+        this.message.create('success', `อัพเดด ${this.reportForm.get('jobNo')?.value} เรียบร้อย`);
+      } else {
+        this.ListOfData.push(this.reportForm.value);
+        this.message.create('success', `เพิ่ม ${this.reportForm.get('jobNo')?.value} เรียบร้อย`);
+      }
+    }
+    else {
+      Object.values(this.reportForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      }
+      );
     }
   }
 
-  select(row: any) {
-    this.ListOfData.filter((x: any) => x.jobNo == row.jobNo).forEach((x: any) => {
-      this.reportForm.patchValue(x);
-    })
-    this.isVisible = false
-  }
 
-  cearJob(): void {
-    if (this.isNewJob()) {
+
+    select(row: any) {
+      this.ListOfData.filter((x: any) => x.jobNo == row.jobNo).forEach((x: any) => {
+        this.reportForm.patchValue(x);
+      })
+      this.isVisible = false
+    }
+
+    cearJob(): void {
+      if(this.isNewJob()) {
       this.reportForm.reset();
       this.reportForm.get('jobNo')?.setValue(this.running());
     }
@@ -204,4 +218,29 @@ export class PrintWorkComponent {
 
     }
   }
+
+  async sentEmail() {
+    emailjs.init("69DvwevKGvRmw71RB");
+    const email = this.reportForm.get('email')?.value
+    if (email) {
+      let respone = await emailjs.send("service_cf8076o", "template_n76de2v", {
+        to_name: "Test",
+        from_name: "Test",
+        message: "Test",
+        reply_to: "Test",
+      }).then((result) => {
+        this.message.create('success', `ส่งอีเมลเรียบร้อย`);
+      });
+    } else {
+      this.message.create('error', `กรุณาใส่อีเมล`);
+      this.reportForm.get('email')?.markAllAsTouched();
+      this.reportForm.get('email')?.updateValueAndValidity({ onlySelf: true });
+    }
+  }
 }
+
+// Object.values(this.validateForm.controls).forEach(control => {
+//   if (control.invalid) {
+//     control.markAsDirty();
+//     control.updateValueAndValidity({ onlySelf: true });
+//   }

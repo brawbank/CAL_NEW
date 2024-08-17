@@ -1396,6 +1396,11 @@
     "minimatch" "^3.0.4"
     "plist" "^3.0.4"
 
+"@emailjs/browser@^4.3.3":
+  "integrity" "sha512-ltpt2S/WVREIBXptxYAVYBvXb2O6yTUYiRUWF8OLikMxlmiGsIgKpgHppikNd4Df0uAav7jCsQKcOJ3TJFUx5g=="
+  "resolved" "https://registry.npmjs.org/@emailjs/browser/-/browser-4.3.3.tgz"
+  "version" "4.3.3"
+
 "@esbuild/win32-x64@0.18.17":
   "integrity" "sha512-fGEb8f2BSA3CW7riJVurug65ACLuQAzKq0SSqkY2b2yHHH0MzDfbLyKIGzHwOI/gkHcxM/leuSW6D5w/LMNitA=="
   "resolved" "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.18.17.tgz"
